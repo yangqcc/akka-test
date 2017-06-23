@@ -1,4 +1,4 @@
-package com.yqc.`sealed`
+package com.yqc.sealedtest
 
 /**
   * Created by yangqc on 2017/6/22.

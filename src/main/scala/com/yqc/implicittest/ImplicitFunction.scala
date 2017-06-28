@@ -7,11 +7,13 @@ import java.io.File
   */
 
 /**
-  * 隐式转换函数统一放在一个包里
+  * 隐式转换函数统一放在一个包里,隐式函数直接引入
   */
 object ImplicitFunction2 extends App {
 
+  import com.yqc.implicittest.implicitConversion.ImplicitConversion._
+
   var x: Int = 35
 
-//  val f = new File("file.log").read
+  val f = new File("file.log").read
 }

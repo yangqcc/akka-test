@@ -15,5 +15,5 @@ object ImplicitFunction2 extends App {
 
   var x: Int = 35
 
-  val f = new File("file.log").read
+  val f = new File("C:\\Users\\yangqc\\IdeaProjects\\akka-test\\src\\main\\resource\\file.log").read
 }

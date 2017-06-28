@@ -8,6 +8,10 @@ class PreferredPrompt(val preference: String) {
 }
 
 object JoesPrefs {
+
+  /**
+    * prompt一定要是val类型的
+    */
   implicit val prompt = new PreferredPrompt("Yes, master> ")
 }
 

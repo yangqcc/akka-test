@@ -1,6 +1,6 @@
 package com.yqc.akka.actors
 
-import akka.actor.{Actor, ActorSystem, Props}
+import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 import akka.event.Logging
 
 /**
@@ -22,6 +22,16 @@ class MyActor extends Actor {
     case _ => log.info("received unknown message")
   }
 
+  override def preStart(): Unit = {
+    println(s"Start actor ${self}")
+    super.preStart()
+  }
+
+}
+
+object MyActor {
+
+  def props(name: String): Props = Props(classOf[MyActor], name)
 }
 
 /**
@@ -50,9 +60,17 @@ class MyParameterActor(val args: String) extends Actor {
   val childActor = context.actorOf(Props[MyActor], "myChild")
 }
 
-object CreateActor {
+object CreateActor extends App {
+
+  def createActor(system: ActorSystem, actorName: String, props: Props): ActorRef = system.actorOf(props, actorName)
+
   val system = ActorSystem("mySystem")
-  val actor = system.actorOf(Props[MyActor], "myActor")
   val parameterActor = system.actorOf(Props(classOf[MyParameterActor], "args"), "parameterActor")
   val demoActor = system.actorOf(DemoActor.props("demoActor"))
+
+  val actor1 = createActor(system, "myActor1", MyActor.props("yes"))
+  val actor2 = createActor(system, "myActor2", MyActor.props("yes"))
+  val actor3 = createActor(system, "myActor3", MyActor.props("yes"))
+  val actor4 = createActor(system, "myActor4", MyActor.props("yes"))
+
 }

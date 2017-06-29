@@ -47,7 +47,7 @@ class Mater(nrOfWorkers: Int, nrOfMessage: Int, nrOfElements: Int, listener: Act
       pi += value
       nrOfResults += 1
       if (nrOfResults == nrOfMessage) {
-//        listener ! PiApproximation(pi, duration =)
+        //        listener ! PiApproximation(pi, duration =)
         context.stop(self)
       }
   }

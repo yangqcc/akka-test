@@ -13,12 +13,14 @@ import akka.event.Logging
   * 来表示空格。如果在同一个父Actor下，name出现重复，会抛出
   *akka.actor.InvalidActorNameException异常。
   */
-class MyActor extends Actor {
+class MyActor(val name: String) extends Actor {
 
   val log = Logging(context.system, this)
 
   override def receive: Receive = {
-    case "test" => log.info("received test")
+    case "test" =>
+      log.info("received test")
+      sender ! "yes"
     case _ => log.info("received unknown message")
   }
 
@@ -41,7 +43,7 @@ object DemoActor {
   def props(name: String): Props = Props(classOf[DemoActor], name)
 }
 
-class DemoActor extends Actor {
+class DemoActor(val name: String) extends Actor {
   override def receive: Receive = {
     case "yes" => println("this is yes!")
     case _ => println("this is another")
@@ -62,15 +64,21 @@ class MyParameterActor(val args: String) extends Actor {
 
 object CreateActor extends App {
 
-  def createActor(system: ActorSystem, actorName: String, props: Props): ActorRef = system.actorOf(props, actorName)
+  def createActor(actorName: String, props: Props)(implicit system: ActorSystem): ActorRef = system.actorOf(props, actorName)
 
-  val system = ActorSystem("mySystem")
-  val parameterActor = system.actorOf(Props(classOf[MyParameterActor], "args"), "parameterActor")
-  val demoActor = system.actorOf(DemoActor.props("demoActor"))
+  implicit val system = ActorSystem("mySystem")
+  //  val parameterActor = system.actorOf(Props(classOf[MyParameterActor], "args"), "parameterActor1")
+  //  val demoActor = system.actorOf(DemoActor.props("demoActor"))
 
-  val actor1 = createActor(system, "myActor1", MyActor.props("yes"))
-  val actor2 = createActor(system, "myActor2", MyActor.props("yes"))
-  val actor3 = createActor(system, "myActor3", MyActor.props("yes"))
-  val actor4 = createActor(system, "myActor4", MyActor.props("yes"))
+  val actor1 = createActor("myActor1", MyActor.props("yes"))
+  val actor2 = createActor("myActor2", MyActor.props("yes"))
+  val actor3 = createActor("myActor3", MyActor.props("yes"))
+  val actor4 = createActor("myActor4", MyActor.props("yes"))
 
+  actor1 ! "test"
+  /*
+    override def receive: Receive = {
+      case "yes" => println("get comeback")
+      case _ => println("yes!")
+    }*/
 }

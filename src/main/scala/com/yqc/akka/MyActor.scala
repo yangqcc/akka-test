@@ -1,4 +1,4 @@
-package com.yqc.akka.actors
+package com.yqc.akka
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 import akka.event.Logging

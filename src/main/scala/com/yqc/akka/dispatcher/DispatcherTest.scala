@@ -1,3 +1,4 @@
+/*
 package com.yqc.akka.dispatcher
 
 import java.util.concurrent.TimeUnit
@@ -27,7 +28,7 @@ class WriterActor extends Actor {
   override def receive: Receive = ???
 }
 
-class ControlActor extends Actor {
+/*class ControlActor extends Actor {
 
   implicit val timeout = Timeout(5, TimeUnit.MINUTES)
 
@@ -44,7 +45,7 @@ class ControlActor extends Actor {
     (1 to count)
     .
   }
-}
+}*/
 
 object Master {
   def main(args: Array[String]): Unit = {
@@ -52,4 +53,4 @@ object Master {
     val actor = system.actorOf(Props[ControlActor], "controlActor")
     actor ! StartCommand(100)
   }
-}
+}*/

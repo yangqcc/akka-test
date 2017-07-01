@@ -62,3 +62,17 @@ class MyActor1 extends Actor with ActorLogging {
     case GoodBye => log.info("Someone said goodbye")
   }
 }
+
+class Argument(val value: String) extends AnyVal
+
+class ValueClassActor(arg: Argument) extends Actor {
+  def receive = {
+    case _ => ()
+  }
+}
+
+object ValueClassActor {
+  def props1(arg: Argument) = Props(classOf[ValueClassActor], arg) // fails at runtime,运行期创建失败
+  def props2(arg: Argument) = Props(classOf[ValueClassActor], arg.value) // ok
+  def props3(arg: Argument) = Props(new ValueClassActor(arg)) // ok
+}

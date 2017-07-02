@@ -1,13 +1,13 @@
 package com.yqc.akka.actors
 
-import akka.actor.{Actor, ActorSystem, IndirectActorProducer, Props}
+import akka.actor.{ActorSystem, IndirectActorProducer, Props}
 
 /**
   * Created by yangqc on 2017/7/1.
   */
 class DependencyInjector(applicationContext: AnyRef, beanName: String) extends IndirectActorProducer {
 
-  override def actorClass = classOf[Actor]
+  override def actorClass = classOf[MyActor1]
 
   override def produce = new MyActor1
 

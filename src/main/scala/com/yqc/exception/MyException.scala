@@ -22,3 +22,23 @@ object TestException {
     }
   }
 }
+
+trait MyExceptionTrait {
+
+  @throws[Problem]
+  def showMessage(message: String): Unit
+}
+
+class TraitInherit(val name: String) extends MyExceptionTrait {
+
+  override def showMessage(message: String): Unit = throw new Problem("error!")
+}
+
+object TraitInherit {
+
+  def apply(name: String): TraitInherit = new TraitInherit(name)
+
+  def main(args: Array[String]): Unit = {
+    TraitInherit("qicheng").showMessage("this is message")
+  }
+}

@@ -39,6 +39,11 @@ object TraitInherit {
   def apply(name: String): TraitInherit = new TraitInherit(name)
 
   def main(args: Array[String]): Unit = {
-    TraitInherit("qicheng").showMessage("this is message")
+    try {
+      TraitInherit("qicheng").showMessage("this is message")
+    } catch {
+      case error: Problem => println(error + "this is problem!")
+      case _ => println("i don't know!")
+    }
   }
 }

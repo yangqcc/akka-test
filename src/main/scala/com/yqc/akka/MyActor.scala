@@ -76,8 +76,7 @@ object CreateActor extends App {
   val actor4 = createActor("myActor4", MyActor.props("yes"))
 
   actor1 ! "test"
-  /*
-    override def receive: Receive = {
+/*    override def receive: Receive = {
       case "yes" => println("get comeback")
       case _ => println("yes!")
     }*/

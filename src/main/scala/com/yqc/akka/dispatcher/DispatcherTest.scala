@@ -1,4 +1,3 @@
-/*
 package com.yqc.akka.dispatcher
 
 import java.util.concurrent.TimeUnit
@@ -53,4 +52,4 @@ object Master {
     val actor = system.actorOf(Props[ControlActor], "controlActor")
     actor ! StartCommand(100)
   }
-}*/
+}

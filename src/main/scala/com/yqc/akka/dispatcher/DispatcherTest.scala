@@ -1,4 +1,4 @@
-package com.yqc.akka.dispatcher
+/*package com.yqc.akka.dispatcher
 
 import java.util.concurrent.TimeUnit
 
@@ -53,3 +53,4 @@ object Master {
     actor ! StartCommand(100)
   }
 }
+*/

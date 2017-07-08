@@ -1,4 +1,4 @@
-package com.yqc.implicittest
+package com.yqc.base.implicittest
 
 /**
   * Created by yangqc on 2017/7/6.

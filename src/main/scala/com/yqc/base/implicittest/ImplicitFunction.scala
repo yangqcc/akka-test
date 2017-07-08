@@ -1,4 +1,4 @@
-package com.yqc.implicittest
+package com.yqc.base.implicittest
 
 import java.io.File
 
@@ -11,7 +11,7 @@ import java.io.File
   */
 object ImplicitFunction2 extends App {
 
-  import com.yqc.implicittest.implicitConversion.ImplicitConversion._
+  import com.yqc.base.implicittest.implicitConversion.ImplicitConversion._
 
   var x: Int = 35
 

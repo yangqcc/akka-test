@@ -1,4 +1,4 @@
-package com.yqc.exception
+package com.yqc.base.exception
 
 /**
   * Created by yangqc on 2017/7/2.

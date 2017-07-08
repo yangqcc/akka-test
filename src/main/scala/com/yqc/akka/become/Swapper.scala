@@ -9,9 +9,15 @@ import akka.actor.{Actor, ActorSystem, Props}
   */
 case object Swap
 
+class MySwapper
+
 class Swapper extends Actor {
 
   import context._
+
+  def testFunction: MySwapper => String = {
+    case myswapper: MySwapper => "!"
+  }
 
   override def receive: Receive = {
     case Swap =>
@@ -22,6 +28,7 @@ class Swapper extends Actor {
           unbecome()
       }, discardOld = false) //push on top instead of replace
   }
+
 }
 
 object SwapperApp extends App {

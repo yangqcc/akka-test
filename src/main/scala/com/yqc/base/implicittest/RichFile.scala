@@ -1,4 +1,4 @@
-package com.yqc.implicittest
+package com.yqc.base.implicittest
 
 
 import java.io.File
@@ -30,7 +30,7 @@ object ImplicitFunction extends App {
     * 引入隐式函数
     */
 
-  import com.yqc.implicittest.implicitConversion.ImplicitConversion._
+  import com.yqc.base.implicittest.implicitConversion.ImplicitConversion._
 
 
   var x: Int = 3.5

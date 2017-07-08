@@ -1,4 +1,4 @@
-package com.yqc.implicittest
+package com.yqc.base.implicittest
 
 /**
   * Created by yangqc on 2017/6/29.
@@ -17,7 +17,7 @@ object ImplicitValue {
 
 object TestImplicitValue {
 
-  import com.yqc.implicittest.ImplicitValue._
+  import com.yqc.base.implicittest.ImplicitValue._
 
   def main(args: Array[String]): Unit = {
     ImplicitValue().showInteger

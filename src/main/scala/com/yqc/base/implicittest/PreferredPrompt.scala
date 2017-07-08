@@ -1,4 +1,4 @@
-package com.yqc.implicittest
+package com.yqc.base.implicittest
 
 /**
   * Created by yangqc on 2017/6/28.
@@ -42,7 +42,7 @@ object Greeter {
 
 object TestImplicit {
 
-  import com.yqc.implicittest.JoesPrefs._
+  import com.yqc.base.implicittest.JoesPrefs._
 
   def main(args: Array[String]): Unit = {
     Greeter.greet("Bob")

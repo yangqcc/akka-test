@@ -12,7 +12,11 @@ package com.yqc.base.casetest
   *
   * 样本类的最大好处就是能够支持模式匹配
   */
-abstract class Expr
+
+/**
+  * sealed 关键字让样本类的超类被封闭，封闭类畜类类定义所在的文件之外，不能添加任何新的子类
+  */
+sealed abstract class Expr
 
 case class Var(name: String) extends Expr
 

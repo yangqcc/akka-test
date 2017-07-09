@@ -26,6 +26,16 @@ class CaseType {
     case _ => "OK"
   }
 
+  /**
+    * 构造器模式匹配
+    *
+    * @param expr
+    */
+  def showConstructorMarch(expr: Expr) = expr match {
+    case BinOp("+", e, Number(0)) => println(s"a deep match and 'e' is ${e}")
+    case _ => println("nothing")
+  }
+
 
   /**
     * 常量模式,任何val或者单例随想都可被当做常量
@@ -49,9 +59,11 @@ object CaseType {
 
   def main(args: Array[String]): Unit = {
     val caseType = new CaseType();
-    println(caseType.describe(5))
-    println(caseType.describe(Nil))
-    println(caseType.showConstantMatch())
-    println(caseType.showVariableMatch())
+    /*   println(caseType.describe(5))
+       println(caseType.describe(Nil))
+       println(caseType.showConstantMatch())
+       println(caseType.showVariableMatch())*/
+    caseType.showConstructorMarch(BinOp("+", Var("21"), Number(0)))
+    caseType.showConstructorMarch(BinOp("+", Number(12), Number(0)))
   }
 }

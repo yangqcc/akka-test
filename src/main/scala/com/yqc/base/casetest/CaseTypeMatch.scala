@@ -40,7 +40,8 @@ class CaseTypeMatch {
     */
   def variableBind(expr: Expr): Expr = expr match {
     case UnOp("abs", e@UnOp("abs", _)) => e
-    case _ => new Expr {}
+    //    case _ => new Expr {}  //因为Expr前面有关键字sealed,所以Expr类所在文件之外不能继承
+    case _ => Number(12)
   }
 }
 

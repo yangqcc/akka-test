@@ -6,19 +6,20 @@ package com.yqc.base.casetest
   */
 trait FunctionInherit[+A, -B] extends (A => B) {
 
-  val test: Int => String = {
-    case name: Int => name.toString
-    case _ => "no parameter!"
-  }
+  /*  val test: Int => String = {
+      case name: Int => name.toString
+      case _ => "no parameter!"
+    }*/
 }
 
-case class MyCase()
+sealed abstract class Animal
 
-class MyFunction extends FunctionInherit[AnyVal, MyCase] {
-  override def apply(v1: AnyVal): MyCase = {
-    case MyCase => MyCase
-    case _ => MyCase
-  }
+case class Dog(name: String) extends Animal
+
+case class Cat(name: String) extends Animal
+
+class MyFunction extends FunctionInherit[Animal, String] {
+  override def apply(v1: Animal): String = v1.toString
 }
 
 object MyFunction {
@@ -27,4 +28,6 @@ object MyFunction {
   def main(args: Array[String]): Unit = {
     println(new MyFunction())
   }
-}*/
+}
+
+*/

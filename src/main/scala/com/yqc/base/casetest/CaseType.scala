@@ -36,7 +36,6 @@ class CaseType {
     case _ => println("nothing")
   }
 
-
   /**
     * 常量模式,任何val或者单例随想都可被当做常量
     *

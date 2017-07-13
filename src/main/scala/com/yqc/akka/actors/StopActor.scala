@@ -5,7 +5,7 @@ import akka.actor.{Actor, ActorSystem, Props}
 /**
   * Created by yangqc on 2017/7/1.
   */
-class StopActor extends Actor {5
+class StopActor extends Actor {
 
   var i: Int = 0
 
@@ -15,6 +15,7 @@ class StopActor extends Actor {5
       i = i + 1
       println(i)
   }
+
 }
 
 object StopActor {

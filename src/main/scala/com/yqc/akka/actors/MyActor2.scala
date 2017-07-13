@@ -1,6 +1,9 @@
 package com.yqc.akka.actors
 
-import akka.actor.{Actor, ActorSystem}
+import akka.actor.SupervisorStrategy.{Escalate, Restart, Resume, Stop}
+import akka.actor.{Actor, OneForOneStrategy}
+
+import scala.concurrent.duration.{FiniteDuration, MINUTES}
 
 /**
   * Created by yangqc on 2017/7/1.
@@ -36,6 +39,17 @@ class HotSwapActor extends Actor {
     case "foo" => become(angry)
     case "bar" => become(happy)
   }
+
+  /**
+    * fault tolerance(容错 策略)
+    */
+  override val supervisorStrategy =
+    OneForOneStrategy(maxNrOfRetries = 10, withinTimeRange = new FiniteDuration(1, MINUTES)) {
+      case _: ArithmeticException => Resume
+      case _: NullPointerException => Restart
+      case _: IllegalArgumentException => Stop
+      case _: Exception => Escalate
+    }
 }
 
 case object Swap

@@ -1,8 +1,13 @@
-name := "scala_test"
+lazy val root = (project in file("."))
 
-version := "1.0"
+  .settings(
+    name := "scala_test",
 
-scalaVersion := "2.12.1"
+    //指定sbt版本
+    version := "1.0",
+
+    scalaVersion := "2.12.1"
+  )
 
 lazy val akkaVersion = "2.5.2"
 

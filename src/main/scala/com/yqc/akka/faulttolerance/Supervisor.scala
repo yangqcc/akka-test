@@ -37,11 +37,11 @@ class Child extends Actor {
   var state = 0
 
   override def preStart(): Unit = {
-    println("开始启动!")
+    println("子类开始启动!")
   }
 
   override def postStop(): Unit = {
-    println("开始停止!")
+    println("子类开始停止!")
   }
 
   def throwExceptionFunction: Unit = {
@@ -72,7 +72,7 @@ object SupervisorTest {
     val system = ActorSystem.apply("mySystem")
     val supervisor = system.actorOf(Props[Supervisor], "supervisor")
     supervisor ! Props[Child]
-    Thread.sleep(1000)
-    supervisor ! "escalateChild"
+    supervisor ! Props[Child]
+    supervisor ! "child"
   }
 }

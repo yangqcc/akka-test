@@ -1,9 +1,7 @@
-/*package com.yqc.akka.dispatcher
+package com.yqc.akka.dispatcher
 
-import java.util.concurrent.TimeUnit
-
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import akka.util.Timeout
+import akka.actor.{Actor, ActorSystem, Props}
+import com.typesafe.config.ConfigFactory
 
 /**
   * Created by yangqc on 2017/7/1.
@@ -24,33 +22,15 @@ class WriterActor extends Actor {
     println(Thread.currentThread().getName)
   }
 
-  override def receive: Receive = ???
-}
-
-/*class ControlActor extends Actor {
-
-  implicit val timeout = Timeout(5, TimeUnit.MINUTES)
-
   override def receive: Receive = {
-    case msg: StartCommand =>
-      val startTime = System.currentTimeMillis()
-      val actors =
-    val results=actors.map(actor=>a)
+    case StartCommand(100) => println("this is startCommand!")
   }
-
-  def createActor(count: Int): List[ActorRef] = {
-    val props = Props(classOf[WriterActor]).withDispatcher("")
-    .
-    (1 to count)
-    .
-  }
-}*/
+}
 
 object Master {
   def main(args: Array[String]): Unit = {
-    val system = ActorSystem("DataInitializer")
-    val actor = system.actorOf(Props[ControlActor], "controlActor")
+    val system = ActorSystem("DataInitializer", ConfigFactory.load().getConfig("MyDispatcherExample"))
+    val actor = system.actorOf(Props[WriterActor].withDispatcher("my-dispatcher"), "controlActor")
     actor ! StartCommand(100)
   }
 }
-*/

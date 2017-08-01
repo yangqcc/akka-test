@@ -6,6 +6,7 @@ import akka.actor.{Actor, ActorRef, ActorSystem, Kill, Props, Terminated}
 import akka.routing.{ActorRefRoutee, RoundRobinRoutingLogic, Router}
 
 /**
+  * akka 路由
   * Created by yangqc on 2017/8/1
   */
 class ChildActor extends Actor {
@@ -13,7 +14,6 @@ class ChildActor extends Actor {
     case w: String =>
       println(s"child,value is ${w}")
       println(self)
-      TimeUnit.SECONDS.sleep(2)
       self ! Kill
   }
 }

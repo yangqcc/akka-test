@@ -1,7 +1,5 @@
 package com.yqc.akka.router
 
-import java.util.concurrent.TimeUnit
-
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 import akka.routing.{DefaultResizer, RoundRobinPool}
 
@@ -10,11 +8,10 @@ import akka.routing.{DefaultResizer, RoundRobinPool}
   */
 class MyActor extends Actor {
 
-  val router1: ActorRef = context.actorOf(RoundRobinPool(nrOfInstances = 5, resizer = Some(DefaultResizer(5, 7))).props(Props[ChildActor]))
+  val router1: ActorRef = context.actorOf(RoundRobinPool(nrOfInstances = 5, resizer = Some(DefaultResizer())).props(Props[ChildActor]))
 
   override def receive: Receive = {
     case _: String =>
-      println("this is myActor")
       router1 ! "123"
   }
 }
@@ -29,7 +26,6 @@ object RouterTest2 {
     myActor ! "12"
     myActor ! "12"
     myActor ! "12"
-    TimeUnit.SECONDS.sleep(5)
     myActor ! "12"
     myActor ! "12"
     myActor ! "12"

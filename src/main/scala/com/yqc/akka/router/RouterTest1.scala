@@ -2,7 +2,7 @@ package com.yqc.akka.router
 
 import java.util.concurrent.TimeUnit
 
-import akka.actor.{Actor, ActorRef, ActorSystem, Kill, Props, Terminated}
+import akka.actor.{Actor, ActorRef, ActorSystem, Props, Terminated}
 import akka.routing.{ActorRefRoutee, RoundRobinRoutingLogic, Router}
 
 /**
@@ -12,9 +12,8 @@ import akka.routing.{ActorRefRoutee, RoundRobinRoutingLogic, Router}
 class ChildActor extends Actor {
   override def receive: Receive = {
     case w: String =>
-      println(s"child,value is ${w}")
       println(self)
-      self ! Kill
+//      context.stop(self)
   }
 }
 

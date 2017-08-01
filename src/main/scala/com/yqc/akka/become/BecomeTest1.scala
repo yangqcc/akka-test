@@ -5,7 +5,7 @@ import akka.actor.{Actor, ActorSystem, Props}
 /**
   * Created by yangqc on 2017/7/8.
   *
-  * 重新取代消息处理器，可以用来实现有限状态机
+  * 重新取代消息处理器，可以用来实现有限状态机,不过有限状态机可以用FSM
   */
 trait BecomeMessage
 
@@ -28,7 +28,7 @@ class BecomeTest1 extends Actor {
         case message: MyBecomeMessage1 =>
           println(message.name + ", after become!")
         case message: MyBecomeMessage2 =>
-          println(message.name + ",before unbecome!")
+          println(message.name + ", before unbecome!")
           unbecome()
       })
     case message: MyBecomeMessage2 =>

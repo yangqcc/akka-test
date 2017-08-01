@@ -1,12 +1,9 @@
 package com.yqc.akka.faulttolerance
 
-import akka.actor.ActorSystem
-import akka.testkit.{ImplicitSender, TestKit}
-import com.typesafe.config.ConfigFactory
-
 /**
   * Created by yangqc on 2017/7/30
   */
+//TODO 运行不起来，难道是版本的问题?
 /*
 class FaultHandlingDocSpec(_system: ActorSystem) extends TestKit(_system) with ImplicitSender {
 
@@ -27,4 +24,5 @@ class FaultHandlingDocSpec(_system: ActorSystem) extends TestKit(_system) with I
   "A supervisor" must "apply the chosen strategy for its child" in {
     // code here
   }
-}*/
+}
+*/

@@ -16,6 +16,11 @@ class Supervisor extends Actor {
     println("父类开始启动!")
   }
 
+  /**
+    * 复写supervisorStrategy,实现自己的容错策略
+    *
+    * @return
+    */
   override def supervisorStrategy: SupervisorStrategy =
     OneForOneStrategy(maxNrOfRetries = 10, withinTimeRange = new FiniteDuration(1, MINUTES)) {
       case _: ArithmeticException => Resume

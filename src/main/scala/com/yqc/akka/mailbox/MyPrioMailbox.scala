@@ -37,8 +37,8 @@ class Logger extends Actor {
 
 object MailBoxTest {
   def main(args: Array[String]): Unit = {
-    val system = ActorSystem("mailBoxSystem", ConfigFactory.load().getConfig("MyDispatcherExample"))
-    val a = system.actorOf(Props(classOf[Logger]).withDispatcher("my-dispatcher"))
+    val system = ActorSystem("mailBoxSystem", ConfigFactory.load().getConfig("MyMailBoxConfig"))
+    val a = system.actorOf(Props(classOf[Logger]).withDispatcher("prio-dispatcher"))
     a ! "this is custom message!"
   }
 }

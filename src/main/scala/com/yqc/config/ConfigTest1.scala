@@ -12,5 +12,6 @@ object ConfigTest1 {
     println(config.getConfig("/parent/router1").getInt("nr-of-instances"))
     val defaultConfig: Config = ConfigFactory.load().getConfig("CustomMailBox")
     println(defaultConfig.getConfig("custom-dispatcher").getString("mailbox-type"))
+    println(defaultConfig.getConfig("custom-dispatcher").getConfig(" fork-join-executor"))
   }
 }

@@ -12,8 +12,8 @@ import akka.routing.{ActorRefRoutee, RoundRobinRoutingLogic, Router}
 class ChildActor extends Actor {
   override def receive: Receive = {
     case w: String =>
-      println(self)
-//      context.stop(self)
+      println(self + s",value is '${w}'")
+    //      context.stop(self)
   }
 }
 

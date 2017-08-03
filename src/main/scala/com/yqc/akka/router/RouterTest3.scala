@@ -18,7 +18,7 @@ class RouterActor extends Actor {
 object RouterTest3 {
   def main(args: Array[String]): Unit = {
     val system: ActorSystem = ActorSystem("system", ConfigFactory.load("router.conf"))
-    val routerActor: ActorRef = system.actorOf(Props[RouterActor])
+    val routerActor: ActorRef = system.actorOf(Props[RouterActor], "parent")
     routerActor ! "hello"
   }
 }

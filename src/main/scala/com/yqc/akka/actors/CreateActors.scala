@@ -58,7 +58,7 @@ class MyActor1 extends Actor with ActorLogging {
   val child = context.actorOf(Props[MyActor1], name = "myChild")
 
   override def receive: Receive = {
-    case Greeting(greeter) => log.info(s"I was greeted by $greeter.")
+    case Greeting(greeter) => log.info(s"I was greeted by ${greeter}.")
     case GoodBye => log.info("Someone said goodbye")
   }
 }

@@ -25,6 +25,8 @@ class WriterActor extends Actor {
   override def receive: Receive = {
     case StartCommand(100) => println("this is startCommand!")
   }
+
+  println(context.dispatcher)
 }
 
 object Master {

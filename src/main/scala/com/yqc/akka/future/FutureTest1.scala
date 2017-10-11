@@ -2,9 +2,10 @@ package com.yqc.akka.future
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
-import scala.concurrent.Await
+import scala.concurrent.Future
 
 /**
+  * actor中使用future
   * Created by yangqc on 2017/7/31
   */
 class A extends Actor {
@@ -28,8 +29,10 @@ object FutureTest1 {
     val aRef: ActorRef = system.actorOf(Props[A], "aRef")
 
     implicit val timeout = Timeout(5 seconds)
-    val future = aRef ? "hello"
-    val result = Await.result(future, Timeout(10 seconds).duration).asInstanceOf[String]
-    print(result)
+    //    val future = aRef ? "hello"
+    //下面这个会阻塞,直到返回
+    //    val result = Await.result(future, Timeout(10 seconds).duration).asInstanceOf[String]
+    val future: Future[String] = ask(aRef, "hello").mapTo[String]
+    print(future.value.get)
   }
 }

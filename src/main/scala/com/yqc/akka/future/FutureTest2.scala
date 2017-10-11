@@ -13,6 +13,7 @@ object FutureTest2 {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
+  //生成对象时自动执行
   val f: Future[List[String]] = Future {
     print("this is future function!")
     List[String]("hello", "this", "is")

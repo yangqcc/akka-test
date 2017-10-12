@@ -7,7 +7,7 @@ import scala.concurrent.{ExecutionContext, Future}
 /**
   * 直接使用future,不使用actor
   */
-object DirectlyUseFuture {
+object DirectlyUseFuture1 {
 
   private implicit val ec = ExecutionContext.fromExecutorService(Executors.newFixedThreadPool(2))
 

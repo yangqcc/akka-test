@@ -7,6 +7,9 @@ import akka.util.Timeout
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 
+/**
+  * 多个future计算
+  */
 object CalculateFuture {
 
   private implicit val ec = ExecutionContext.fromExecutorService(Executors.newCachedThreadPool())

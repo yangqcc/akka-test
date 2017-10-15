@@ -29,9 +29,9 @@ object SequenceFuture {
     val system = ActorSystem("actorSystem")
     val oddActor = system.actorOf(Props[CustomActor], "oddActor")
 
-    val listOfFutures = List.fill(100)(akka.pattern.ask(oddActor, "this is message").mapTo[Int])
+    val listOfFutures: List[Future[Int]] = List.fill(100)(akka.pattern.ask(oddActor, "this is message").mapTo[Int])
 
-    val futureList = Future.sequence(listOfFutures)
+    val futureList: Future[List[Int]] = Future.sequence(listOfFutures)
 
     //Find the sum of the odd numbers
     val oddSum = futureList.map(_.sum)

@@ -11,12 +11,14 @@ import scala.concurrent.{Await, Future}
 object FutureException {
   def main(args: Array[String]): Unit = {
     import scala.concurrent.ExecutionContext.Implicits.global
-    val f1 = Future(6 / 0) recover { case e: ArithmeticException => 0 }
-    val f2 = Future(6 / 0) recover { case e: ArithmeticException => 0 }
-    val f3 = Future((() => 6 / 2) ()) recover { case e: ArithmeticException => 0 }
+
+    val f1 = Future(6 / 0) recover { case _: ArithmeticException => 0 }
+    val f2 = Future(6 / 0) recover { case _: ArithmeticException => 0 }
+    val f3 = Future((() => 6 / 2) ()) recover { case _: ArithmeticException => 0 }
 
     val f4 = Future.sequence(Seq(f1, f2, f3))
 
+    //TODO 结果类型为什么是Future[(Int,Int,Int)]
     val f5: Future[(Int, Int, Int)] = for {
       r1 <- f1
       r2 <- f2
@@ -28,5 +30,6 @@ object FutureException {
     val a: () => Int = () => 6 / 2
     println(f6)
     println(a() + "**")
+    f5 foreach println
   }
 }

@@ -1,4 +1,4 @@
-package com.yqc.akka.actors.createactors
+package com.yqc.akka.actors.props.edgecase
 
 import akka.actor.{Actor, ActorSystem, Props}
 

@@ -1,4 +1,4 @@
-package com.yqc.akka.actors.recommendedpractices
+package com.yqc.akka.actors.props.recommendedpractices
 
 import akka.actor.{Actor, ActorLogging}
 

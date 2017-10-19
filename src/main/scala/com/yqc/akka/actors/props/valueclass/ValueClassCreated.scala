@@ -4,6 +4,7 @@ import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 import com.yqc.akka.actors.props.valueclass.ValueClassActor.{Animal, Dog}
 
 /**
+  * actor's constructor is value class recommend practice
   * Created by yangqc on 17-10-16
   */
 class Argument(val value: String) extends AnyVal

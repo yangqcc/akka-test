@@ -1,13 +1,11 @@
 package com.yqc.akka.future.actor
 
-import java.util.concurrent.Executors
-
 import akka.actor.{Actor, ActorSystem, Props}
 import akka.pattern.ask
 import akka.util.Timeout
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{Await, Future}
 
 /**
   * Created by yangqc on 17-10-21
@@ -35,21 +33,19 @@ class DoubleActor extends Actor {
 }
 
 object SendAndReceiveFuture {
-
-
   implicit val timeout = Timeout(5 seconds)
-  private implicit val ec = ExecutionContext.fromExecutorService(Executors.newFixedThreadPool(2))
 
   def main(args: Array[String]): Unit = {
     val system = ActorSystem("system")
+    implicit val dispatcher = system.dispatcher // The ExecutionContext that will be used,用于执行Future
     val intActor = system.actorOf(Props[IntActor], "intActor")
     val stringActor = system.actorOf(Props[StringActor], "stringActor")
     val doubleActor = system.actorOf(Props[DoubleActor], "doubleActor")
     val f: Future[Result] =
       for {
-        x <- ask(intActor, Request).mapTo[Int]
-        s <- (stringActor ask Request).mapTo[String]
-        d <- (doubleActor ? Request).mapTo[Double]
+        x <- ask(intActor, Request).mapTo[Int] // call pattern directly
+        s <- (stringActor ask Request).mapTo[String] // call by implicit conversion
+        d <- (doubleActor ? Request).mapTo[Double] // call by symbolic name
       } yield Result(x, s, d)
     Await.result(f, Timeout(5 seconds).duration)
     println(f.value.get)

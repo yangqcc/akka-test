@@ -1,4 +1,4 @@
-package com.yqc.akka.future
+package com.yqc.akka.future.callbacks
 
 import java.util.concurrent.Executors
 

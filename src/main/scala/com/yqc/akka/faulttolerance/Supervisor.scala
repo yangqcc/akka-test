@@ -3,7 +3,7 @@ package com.yqc.akka.faulttolerance
 import akka.actor.SupervisorStrategy.{Escalate, Restart, Resume, Stop}
 import akka.actor.{Actor, ActorRef, ActorSystem, OneForOneStrategy, Props, SupervisorStrategy}
 
-import scala.concurrent.duration.{FiniteDuration, MINUTES}
+import scala.concurrent.duration._
 
 /**
   * Created by yangqc on 2017/7/14.
@@ -22,7 +22,7 @@ class Supervisor extends Actor {
     * @return
     */
   override def supervisorStrategy: SupervisorStrategy =
-    OneForOneStrategy(maxNrOfRetries = 10, withinTimeRange = new FiniteDuration(1, MINUTES)) {
+    OneForOneStrategy(maxNrOfRetries = 10, withinTimeRange = 1 minutes) {
       case _: ArithmeticException => Resume
       case _: NullPointerException => Restart
       case _: IllegalArgumentException => Stop
@@ -34,6 +34,7 @@ class Supervisor extends Actor {
     case "child" => childRef ! "start"
     case "stopChild" => childRef ! "stop"
     case "escalateChild" => childRef ! "escalate"
+    case "message" => childRef ! "message"
   }
 }
 
@@ -69,6 +70,13 @@ class Child extends Actor {
     case "stop" => stopActor
     case "escalate" => escalateActor
     case "get" => sender() ! state
+    case "message" => println(this)
+  }
+}
+
+class CustomDeadLetters extends Actor {
+  override def receive = {
+    case "message" => println("this is deadLetter!")
   }
 }
 
@@ -77,7 +85,14 @@ object SupervisorTest {
     val system = ActorSystem.apply("mySystem")
     val supervisor = system.actorOf(Props[Supervisor], "supervisor")
     supervisor ! Props[Child]
-    supervisor ! Props[Child]
+    supervisor ! "message"
     supervisor ! "child"
+    supervisor ! "message"
+    for (x <- 1 to 20) {
+      supervisor ! "child"
+    }
+
+    Thread.sleep(2000)
+    supervisor ! "message"
   }
 }

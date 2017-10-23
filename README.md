@@ -1,2 +1,2 @@
 # akka-test
-learn akk
+learn akka

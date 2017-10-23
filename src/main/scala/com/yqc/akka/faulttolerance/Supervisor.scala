@@ -18,6 +18,7 @@ class Supervisor extends Actor {
 
   /**
     * 复写supervisorStrategy,实现自己的容错策略
+    * 其实主要就是自定义 SupervisorStrategy.Decider(这是一个偏函数)
     *
     * @return
     */

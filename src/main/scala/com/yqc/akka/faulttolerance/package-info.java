@@ -25,4 +25,11 @@ package com.yqc.akka.faulttolerance;
  * 3.Supervision of Top-Level Actors
  * Toplevel actors means those which are created using system.actorOf(), and they are children of the User Guardian.
  * There are no special rules applied in this case, the guardian simply applies the configured strategy.
+ * <p>
+ * 4.
+ * (1)-1 to maxNrOfRetries, and Duration.inf to withinTimeRange,then the child is always restarted without any limit(akka默认重启策略)
+ * (2)-1 to maxNrOfRetries, and a non-infinite Duration to withinTimeRange maxNrOfRetries is treated as 1
+ * (3)a non-negative number to maxNrOfRetries and Duration.inf to withinTimeRange
+ * withinTimeRange is treated as infinite duration (i.e.) no matter how long it takes,
+ * once the restart count exceeds maxNrOfRetries, the child actor is stopped
  */

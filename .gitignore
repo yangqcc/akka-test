@@ -13,3 +13,6 @@ project/plugins/project/
 .cache
 .lib/
 
+ .idea/
+/project/
+将删除 .idea/

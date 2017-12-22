@@ -15,4 +15,5 @@ project/plugins/project/
 
  .idea/
 /project/
-将删除 .idea/
+factorials.txt
+factorial2.txt

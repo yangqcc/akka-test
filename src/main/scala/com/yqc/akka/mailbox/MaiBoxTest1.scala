@@ -2,7 +2,6 @@ package com.yqc.akka.mailbox
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 import akka.dispatch.{BoundedMessageQueueSemantics, RequiresMessageQueue}
-import com.typesafe.config.ConfigFactory
 
 /**
   * Created by yangqc on 2017/8/1

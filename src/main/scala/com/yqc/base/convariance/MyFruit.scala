@@ -21,6 +21,7 @@ object MyFruit {
   def main(args: Array[String]): Unit = {
     myFruit.function(new MyAnimal("cat"))
   }
+
 }
 
 class MyAnimal(val name: String) {

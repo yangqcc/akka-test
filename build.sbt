@@ -6,7 +6,11 @@ lazy val root = (project in file("."))
     version := "0.1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-      "com.typesafe.akka" %% "akka-testkit" % akkaVersion
+      "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
+      "com.typesafe.akka" %% "akka-persistence" % akkaVersion,
+      "org.iq80.leveldb" % "leveldb" % "0.10", //leveldb java版本依赖
+      "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.8", //leveldb java版本依赖
+      "com.twitter" %% "chill-akka" % "0.9.2"
     ),
     libraryDependencies += "org.apache.kafka" % "kafka_2.12" % "0.10.1.1",
     // https://mvnrepository.com/artifact/org.scalatest/scalatest_2.12

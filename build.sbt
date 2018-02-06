@@ -15,6 +15,7 @@ lazy val root = (project in file("."))
     libraryDependencies += "org.apache.kafka" % "kafka_2.12" % "0.10.1.1",
     // https://mvnrepository.com/artifact/org.scalatest/scalatest_2.12
     libraryDependencies += "org.scalatest" % "scalatest_2.12" % "3.0.1" % "test",
+    libraryDependencies += "com.typesafe.akka" %% "akka-actor-typed" % "2.5.9",
     libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.5.6"
   )
 
